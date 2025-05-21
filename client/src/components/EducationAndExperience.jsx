@@ -92,7 +92,7 @@ const EducationAndExperience = () => {
     <section 
       ref={sectionRef}
       className="min-h-screen bg-900 !py-16 !px-4 relative overflow-hidden"
-      id="education-experience"
+      id="portfolio"
     >
       <div className="container !mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-white text-center !mb-16">

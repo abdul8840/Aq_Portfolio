@@ -59,7 +59,7 @@ const AboutMe = () => {
   }));
 
   return (
-    <div className="min-h-screen bg-gray-900 animate-gradient-bg !py-12 !px-4 relative overflow-hidden">
+    <div id='about' className="min-h-screen bg-gray-900 animate-gradient-bg !py-12 !px-4 relative overflow-hidden">
       {/* Floating Icons Background with Parallax */}
       {floatingIcons.map(({ id, icon: Icon, size, left, top, duration, delay, color }) => (
         <motion.div

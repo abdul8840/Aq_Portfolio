@@ -92,7 +92,7 @@ const Projects = () => {
   }, [selectedProject]);
 
   return (
-    <section className="min-h-screen bg-900 !py-16 !px-4 relative overflow-hidden">
+    <section id='projects' className="min-h-screen bg-900 !py-16 !px-4 relative overflow-hidden">
       {/* Floating background elements */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(15)].map((_, i) => (

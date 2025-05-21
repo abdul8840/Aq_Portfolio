@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body{
   background-color: oklch(21% 0.034 264.665);
 }

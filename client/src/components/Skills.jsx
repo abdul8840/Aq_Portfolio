@@ -56,7 +56,7 @@ const Skills = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 !py-16 !px-4 relative overflow-hidden">
+    <div id='skills' className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 !py-16 !px-4 relative overflow-hidden">
       {/* Floating Stars/Icons Background - More controlled positioning */}
       {floatingIcons.map((icon) => (
         <motion.div
