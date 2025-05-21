@@ -53,7 +53,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative overflow-hidden min-h-screen flex items-center !pt-20 !pb-16 bg-gray-900">
+    <section id="home" className="relative overflow-hidden min-h-screen flex items-center !pt-40 md:!pt-20 !pb-16 bg-gray-900">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating tech icons */}
@@ -117,9 +117,9 @@ const Hero = () => {
       </div>
 
       <div className="container !mx-auto !px-4 z-10">
-        <div className="flex flex-col md:flex-row items-center">
+        <div className="flex flex-col md:flex-row  items-center">
           {/* Left side - Content */}
-          <div className="md:w-1/2 text-center md:text-left !mb-12 md:!mb-0">
+          <div className="md:w-1/2 text-center md:text-left !mb-12 md:!mb-0 order-2 md:order-1">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white !mb-4">
               Hi, I'm <span className="text-blue-400">Aqib Khan</span>
             </h1>
@@ -147,7 +147,7 @@ const Hero = () => {
           </div>
 
           {/* Right side - Image with animated border */}
-          <div className="md:w-1/2 relative flex justify-center">
+          <div className="md:w-1/2 relative flex justify-center order-1 md:order-2">
             <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
               {/* Animated borders */}
               <div className="absolute inset-0 border-4 border-blue-400 rounded-full animate-spin-slow opacity-60"></div>
