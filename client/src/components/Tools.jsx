@@ -125,11 +125,11 @@ const Tools = () => {
           Tools <span className="text-gradient bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">I Use</span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {tools.map((tool, index) => (
             <motion.div
               key={index}
-              className="relative w-64 h-64 mx-auto perspective-1000"
+              className="relative w-64 h-64 !mx-auto perspective-1000"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
               initial={{ opacity: 0, rotateX: -20 }}

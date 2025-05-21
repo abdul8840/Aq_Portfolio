@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { FaDownload, FaPaperPlane } from 'react-icons/fa';
 import { FiGithub, FiLinkedin, FiTwitter, FiCode, FiDatabase, FiCpu, FiLayers } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
+import CV from '../assets/aqib_cv.pdf'
 
 const Hero = () => {
   // Animate floating elements
@@ -130,7 +131,7 @@ const Hero = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <a
-                href="/path-to-cv.pdf"
+                href={CV}
                 download
                 className="bg-blue-600 hover:bg-blue-700 text-white !px-6 !py-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/30"
               >
