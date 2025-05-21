@@ -59,7 +59,7 @@ const AboutMe = () => {
   }));
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-700 to-gray-900 animate-gradient-bg !py-12 !px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gray-900 animate-gradient-bg !py-12 !px-4 relative overflow-hidden">
       {/* Floating Icons Background with Parallax */}
       {floatingIcons.map(({ id, icon: Icon, size, left, top, duration, delay, color }) => (
         <motion.div
@@ -118,13 +118,13 @@ const AboutMe = () => {
           </div>
           {/* Name and Profession */}
           <motion.div
-            className="mt-6 text-center"
+            className="!mt-6 text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-              John Doe
+              Aqib Khan
             </h3>
             <p className="text-lg font-medium bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-pink-500">
               SEO Specialist & Digital Marketer
@@ -134,7 +134,7 @@ const AboutMe = () => {
 
         {/* Right Side: Bio and Certificates */}
         <motion.div
-          className="flex flex-col justify-center text-white space-y-8"
+          className="flex flex-col justify-center text-white !space-y-8"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -143,13 +143,13 @@ const AboutMe = () => {
             className="relative"
             animate={headingControls}
           >
-            <h2 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 drop-shadow-lg">
+            <h2 className="text-5xl !mb-2 font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 drop-shadow-lg">
               About Me
             </h2>
             <motion.div
               className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full"
               initial={{ width: 0 }}
-              animate={{ width: '50%' }}
+              animate={{ width: '40%' }}
               transition={{ duration: 1.5, ease: 'easeOut', delay: 0.5 }}
             />
           </motion.div>

@@ -52,7 +52,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative overflow-hidden min-h-screen flex items-center !pt-20 !pb-16 bg-gradient-to-br from-gray-900 to-gray-800">
+    <section id="home" className="relative overflow-hidden min-h-screen flex items-center !pt-20 !pb-16 bg-gray-900">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating tech icons */}
@@ -120,14 +120,13 @@ const Hero = () => {
           {/* Left side - Content */}
           <div className="md:w-1/2 text-center md:text-left !mb-12 md:!mb-0">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white !mb-4">
-              Hi, I'm <span className="text-blue-400">John Doe</span>
+              Hi, I'm <span className="text-blue-400">Aqib Khan</span>
             </h1>
             <h2 className="text-2xl md:text-3xl text-gray-300 !mb-6">
-              <span className="text-gradient">Frontend Developer</span>
+              <span className="text-gradient">DIGITAL  MARKETER</span>
             </h2>
             <p className="text-gray-300 !mb-8 max-w-lg !mx-auto md:!mx-0">
-              I build exceptional digital experiences with modern web technologies.
-              Let's create something amazing together!
+              Performed keyword research and analyzed SEO performance of webpages.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <a

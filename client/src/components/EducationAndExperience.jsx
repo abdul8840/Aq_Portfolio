@@ -1,240 +1,259 @@
-import user_info from "../assets/data/user_info";
-import { FaLandmark } from "react-icons/fa";
-import { FaBuildingUser } from "react-icons/fa6";
-import { FcGoogle } from "react-icons/fc";
-import { PiCertificateFill } from "react-icons/pi";
-import { SiHackerrank } from "react-icons/si";
+import { useState, useEffect, useRef } from 'react';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+import { FaGraduationCap, FaBriefcase } from 'react-icons/fa';
 
-function EducationAndExperience() {
-  return (
-    <section id="education-and-experience" className="!mt-20 !mx-4 lg:!mx-20 flex flex-col md:flex-row gap-4 md:gap-2">
-      {/* =========== EDUCATION =========== */}
-      <div className="w-full md:w-[80%]">
-        {/* =========== EDUCATION TITLE =========== */}
-        <h4 className="text-xl dark:text-white !mb-4 font-bold flex gap-2 items-center">
-          <FaLandmark className="text-xl text-red-800 dark:text-red-500" />
-          Education
-        </h4>
+const EducationAndExperience = () => {
+  const [activeTab, setActiveTab] = useState('education');
+  const controls = useAnimation();
+  const timelineRef = useRef(null);
+  const sectionRef = useRef(null);
 
-        {/* =========== EDUCATION LIST =========== */}
-        {user_info.education.map((edu, index) => {
-          return (
-            <div key={index}>
-              {/* =========== DURATION =========== */}
-              <div className="!ps-2 !my-2 first:!mt-0 !mt-2">
-                <h3 className="text-xs font-medium uppercase text-zinc-500 dark:text-zinc-400">
-                  {edu.duration}
-                </h3>
-              </div>
+  const educationData = [
+    {
+      id: 1,
+      year: '2024',
+      degree: 'Bachelor of Commerce',
+      institution: 'Allahabad State University',
+      description: 'Specialized in Web Development and Artificial Intelligence. Graduated with honors.'
+    },
+    {
+      id: 2,
+      year: '2022',
+      degree: 'Digital Marketing',
+      institution: 'National Digital Marketing Institute & Training ( NDMIT )',
+      description: 'Focus on Mathematics and Computer Science. Achieved top 5% in final exams.'
+    },
+    // {
+    //   id: 3,
+    //   year: '2011 - 2013',
+    //   degree: 'Secondary Education',
+    //   institution: 'Metro High School',
+    //   description: 'Participated in multiple coding competitions and science fairs.'
+    // }
+  ];
 
-              <div className="flex gap-x-3 relative group rounded-lg">
-                <div className="relative last:after:hidden after:absolute after:top-0 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px] after:bg-zinc-200 dark:after:bg-zinc-700 dark:group-hover:after:bg-zinc-600">
-                  <div className="relative z-10 size-7 flex justify-center items-center">
-                    <div className="size-2 rounded-full bg-white border-2 border-zinc-300 group-hover:border-zinc-600 dark:bg-zinc-800 dark:border-zinc-600 dark:group-hover:border-zinc-600"></div>
-                  </div>
-                </div>
+  const experienceData = [
+    {
+      id: 1,
+      year: 'June 2023 - Present',
+      position: 'SEO SPECIALIST',
+      company: 'DIGI MARQUEE',
+      description: 'Performed keyword research and analyzed SEO performance of webpages, Created high-quality content that was optimized for SEO purposes.'
+    },
+    {
+      id: 2,
+      year: 'Mar 2023 - May 2023',
+      position: 'SEO EXECUTIVE',
+      company: 'PITCHWORX',
+      description: 'Conducted keyword research to identify high-value search terms and optimized website content accordingly. Develop and executed link-building strategies to increase domain authority and improve search engine rankings.'
+    },
+    {
+      id: 3,
+      year: 'June 2022 - Feb 2023',
+      position: 'SEO EXECUTIVE',
+      company: 'IWAY DIGITAL',
+      description: 'Keyword Research - Tools used to research and select keywords were LSI Graph, Google Suggest, UberSuggest, Google Keyword Planner, SEMrush, Keyword Explorer, and Google Trends'
+    }
+  ];
 
-                <div className="grow !p-2 !pb-8">
-                  {/* =========== IMAGE AND SCHOOL NAME =========== */}
-                  <h3 className="flex items-center gap-x-2 font-semibold text-zinc-800 dark:text-white">
-                    <img className="w-9 h-9 rounded-full" src={edu.image} alt="School Logo" />
-                    <div className="leading-5">
-                      {edu.school}
-                      {/* =========== DEGREE =========== */}
-                      <p className="font-normal text-xs text-zinc-600 dark:text-zinc-400">
-                        {edu.degree}
-                      </p>
-                    </div>
-                  </h3>
-                  
-                </div>
-              </div>
-            </div>
-          );
-        })}
+  useEffect(() => {
+    const handleScroll = () => {
+      if (timelineRef.current && sectionRef.current) {
+        const timelineItems = timelineRef.current.querySelectorAll('.timeline-item');
+        const sectionTop = sectionRef.current.offsetTop;
+        const sectionHeight = sectionRef.current.offsetHeight;
+        const scrollPosition = window.scrollY;
+        
+        // Calculate progress through the section (0 to 1)
+        const progress = Math.min(1, Math.max(0, (scrollPosition - sectionTop + window.innerHeight / 2) / sectionHeight));
+        
+        // Animate the timeline fill based on scroll progress
+        controls.start({
+          height: `${progress * 100}%`
+        });
 
-        {/* =========== CERTIFICATES TITLE =========== */}
-        <h4 className="text-xl dark:text-white !mt-6 font-bold flex gap-2 items-center">
-          <PiCertificateFill className="text-2xl text-red-800 dark:text-red-500" />
-          Certificates
-        </h4>
-
-        <div
-          data-hs-carousel='{"loadingClasses": "opacity-0"}'
-          className="relative !mt-4"
-        >
-          <div className="!hs-carousel relative overflow-hidden w-full h-48 bg-white dark:bg-gray-800 rounded-lg">
-            <div className="!hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0">
-              {/* =========== CERTIFICATES LIST =========== */}
-              {user_info.certificates.map((cert, index) => {
-                return (
-                  <div className="!hs-carousel-slide relative" key={index}>
-                    {cert.icon === "ibm" ? (
-                      <FcGoogle className="text-blue-500 absolute right-5 top-0 text-5xl" />
-                    ) : cert.icon === "google" ? (
-                      <FcGoogle className="text-blue-500 absolute right-5 top-3 text-3xl" />
-                    ) : (
-                      <SiHackerrank className="text-green-500 absolute right-5 top-3 text-3xl" />
-                    )}
-
-                    <div className="flex justify-center items-center h-full bg-gray-100 !p-6 dark:bg-neutral-900">
-                      <div className="hs-tooltip [--placement:bottom] inline-block">
-                        <a href={cert.link} target="_blank" rel="noreferrer" className="hs-tooltip-toggle text-center text-gray-800 dark:text-white hover:text-red-800 hover:dark:text-red-500">
-                          {/* =========== CERTIFICATE NAME =========== */}
-                          <p className=" transition duration-700 !px-6 font-bold">
-                            {cert.title}
-                          </p>
-                          {/* =========== CERTIFICATE DESCRIPTION =========== */}
-                          <p className=" transition duration-700 !px-6 text-sm">
-                            {cert.description}
-                          </p>
-                        </a>
-
-                        {/* =========== TOOLTIP TEXT =========== */}
-                        <span className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 !py-1 !px-2 bg-white border dark:border-zinc-800 dark:bg-zinc-950 text-xs font-medium dark:text-white rounded shadow-sm" role="tooltip">
-                          Open Certificate
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <button
-            type="button"
-            className="hs-carousel-prev hs-carousel:disabled:opacity-50 disabled:pointer-events-none absolute inset-y-0 start-0 inline-flex justify-center items-center w-[46px] h-full text-gray-800 hover:bg-gray-800/10 rounded-s-lg dark:text-white dark:hover:bg-white/10"
-          >
-            <span className="text-2xl" aria-hidden="true">
-              <svg
-                className="flex-shrink-0 size-5"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m15 18-6-6 6-6"></path>
-              </svg>
-            </span>
-            <span className="sr-only">Previous</span>
-          </button>
-          <button
-            type="button"
-            className="hs-carousel-next hs-carousel:disabled:opacity-50 disabled:pointer-events-none absolute inset-y-0 end-0 inline-flex justify-center items-center w-[46px] h-full text-gray-800 hover:bg-gray-800/10 rounded-e-lg dark:text-white dark:hover:bg-white/10"
-          >
-            <span className="sr-only">Next</span>
-            <span className="text-2xl" aria-hidden="true">
-              <svg
-                className="flex-shrink-0 size-5"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m9 18 6-6-6-6"></path>
-              </svg>
-            </span>
-          </button>
+        // Animate each timeline item when it comes into view
+        timelineItems.forEach((item, index) => {
+          const itemTop = item.offsetTop;
+          const itemProgress = Math.min(1, Math.max(0, (scrollPosition - itemTop + window.innerHeight * 0.7) / (window.innerHeight * 0.3)));
           
-          {/* =========== CAROUSEL PAGINATION =========== */}
-          <div className="hs-carousel-pagination flex justify-center absolute bottom-3 start-0 end-0 !space-x-2">
-            {user_info.certificates.map((cert, index) => {
-              return (
-                <span
-                  className="hs-carousel-active:bg-red-700 hs-carousel-active:border-red-700 size-3 border border-gray-400 rounded-full cursor-pointer dark:border-neutral-600 dark:hs-carousel-active:bg-red-500 dark:hs-carousel-active:border-red-500"
-                  key={index}
-                ></span>
-              );
-            })}
+          if (itemProgress > 0.3) {
+            item.classList.add('animate-fade-in');
+          }
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [controls]);
+
+  return (
+    <section 
+      ref={sectionRef}
+      className="min-h-screen bg-900 !py-16 !px-4 relative overflow-hidden"
+      id="education-experience"
+    >
+      <div className="container !mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-white text-center !mb-16">
+          My <span className="text-gradient bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Journey</span>
+        </h2>
+
+        {/* Tab Navigation */}
+        <div className="flex justify-center !mb-12">
+          <div className="bg-gray-800 rounded-full !p-1 flex">
+            <button
+              className={`flex items-center !px-6 !py-3 rounded-full transition-all duration-300 cursor-pointer ${
+                activeTab === 'education' 
+                  ? 'bg-blue-600 text-white shadow-lg' 
+                  : 'text-gray-300 hover:text-white'
+              }`}
+              onClick={() => setActiveTab('education')}
+            >
+              <FaGraduationCap className="!mr-2" />
+              Education
+            </button>
+            <button
+              className={`flex items-center !px-6 !py-3 rounded-full transition-all duration-300 cursor-pointer ${
+                activeTab === 'experience' 
+                  ? 'bg-purple-600 text-white shadow-lg' 
+                  : 'text-gray-300 hover:text-white'
+              }`}
+              onClick={() => setActiveTab('experience')}
+            >
+              <FaBriefcase className="!mr-2" />
+              Experience
+            </button>
           </div>
         </div>
-      </div>
-      
-      {/* =========== EXPERIENCE =========== */}
-      <div className="w-full">
-        {/* =========== EXPERIENCE TITLE =========== */}
-        <h4 className="text-xl dark:text-white !mb-4 font-bold flex gap-2 items-center">
-          <FaBuildingUser className="text-2xl text-red-800 dark:text-red-500" />
-          Experience
-        </h4>
 
-        <div className="md:h-[480px] md:overflow-y-scroll scroll-smooth">
-          {/* =========== EXPERIENCE LIST =========== */}
-          {user_info.experience.map((exp, index) => {
-            return (
-              <div key={index}>
-                <div className="!ps-2 !my-2 first:!mt-0 !mt-2">
-                  <h3 className="text-xs font-medium uppercase text-zinc-500 dark:text-zinc-400">
-                    {exp.duration}
-                  </h3>
-                </div>
+        {/* Timeline Container */}
+        <div className="relative container !mx-auto" ref={timelineRef}>
+          {/* Animated Timeline Line */}
+          <div className="absolute left-1/2 -translate-x-1/2 w-1 h-full bg-gray-700 rounded-full overflow-hidden">
+            <motion.div 
+              className="w-full bg-gradient-to-b from-blue-400 to-purple-500 rounded-full"
+              initial={{ height: '0%' }}
+              animate={controls}
+              transition={{ type: 'spring', damping: 25 }}
+            />
+          </div>
 
-                <div className="flex gap-x-3 relative group rounded-lg">
-                  <div className="relative last:after:hidden after:absolute after:top-0 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px] after:bg-zinc-200 dark:after:bg-zinc-700 dark:group-hover:after:bg-zinc-600">
-                    <div className="relative z-10 size-7 flex justify-center items-center">
-                      <div className="size-2 rounded-full bg-white border-2 border-zinc-300 group-hover:border-zinc-600 dark:bg-zinc-800 dark:border-zinc-600 dark:group-hover:border-zinc-600"></div>
+          <AnimatePresence mode="wait">
+            {activeTab === 'education' ? (
+              <motion.div
+                key="education"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="!space-y-12"
+              >
+                {educationData.map((item, index) => (
+                  <div
+                    key={item.id}
+                    className={`timeline-item relative !pl-8 md:!pl-0 ${
+                      index % 2 === 0 ? 'md:!pr-8 md:!text-right' : 'md:!pl-8'
+                    }`}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.2, delay: index * 0.1 }}
+                  >
+                    {/* Timeline Dot */}
+                    <div className={`absolute top-5 -left-1 w-4 h-4 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 z-10 ${
+                      index % 2 === 0 ? 'md:left-auto md:-right-1' : ''
+                    }`} />
+
+                    {/* Content Card */}
+                    <div className={`bg-gray-800/50 backdrop-blur-md rounded-xl !p-6 !ml-5 !mr-5 border border-gray-700/50 shadow-lg transition-all duration-300 hover:shadow-xl ${
+                      index % 2 === 0 ? 'md:hover:-translate-x-2' : 'md:hover:translate-x-2'
+                    }`}>
+                      <div className={`flex items-center !mb-2 ${
+                        index % 2 === 0 ? 'md:justify-end' : ''
+                      }`}>
+                        <span className="text-blue-400 font-semibold !mr-2">{item.year}</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-white !mb-1">{item.degree || item.position}</h3>
+                      <h4 className="text-purple-300 !mb-3">{item.institution || item.company}</h4>
+                      <p className="text-gray-300">{item.description}</p>
                     </div>
                   </div>
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="experience"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="!space-y-12"
+              >
+                {experienceData.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    className={`timeline-item relative !pl-8 md:!pl-0 ${
+                      index % 2 === 0 ? 'md:!pr-8 md:!text-right' : 'md:!pl-8'
+                    }`}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                  >
+                    {/* Timeline Dot */}
+                    <div className={`absolute top-5 -left-1 w-4 h-4 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 z-10 ${
+                      index % 2 === 0 ? 'md:left-auto md:-right-1' : ''
+                    }`} />
 
-                  <div className="grow !p-2 !pb-8">
-                    {/* =========== COMPANY NAME =========== */}
-                    <h3 className="flex items-center gap-x-2 font-semibold text-zinc-800 dark:text-white">
-                      <img className="w-9 rounded-full" src={exp.image} alt="Company Logo" />
-                      <div className="leading-5">
-                        {exp.company}
-                        {/* =========== POSITION =========== */}
-                        <p className="font-normal text-xs text-zinc-600 dark:text-zinc-400">
-                          {exp.position}
-                        </p>
+                    {/* Content Card */}
+                    <div className={`bg-gray-800/50 backdrop-blur-md rounded-xl !p-6 !ml-5 !mr-5 border border-gray-700/50 shadow-lg transition-all duration-300 hover:shadow-xl ${
+                      index % 2 === 0 ? 'md:hover:-translate-x-2' : 'md:hover:translate-x-2'
+                    }`}>
+                      <div className={`flex items-center !mb-2 ${
+                        index % 2 === 0 ? 'md:justify-end' : ''
+                      }`}>
+                        <span className="text-blue-400 font-semibold !mr-2">{item.year}</span>
                       </div>
-                    </h3>
-                    
-                    <ul className="list-disc list-inside text-zinc-800 dark:text-white !mt-2">
-                      {/* =========== DESCRIPTION LIST =========== */}
-                      {exp.descriptions.map((desc, index) => {
-                        return (
-                          <li className="flex !space-x-3" key={index}>
-                            <svg
-                              className="flex-shrink-0 size-4 !mt-0.5 text-red-800 dark:text-red-500"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span className="text-sm text-zinc-500 dark:text-zinc-400 !mt-1">
-                              {desc}
-                            </span>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+                      <h3 className="text-xl font-bold text-white !mb-1">{item.degree || item.position}</h3>
+                      <h4 className="text-purple-300 !mb-3">{item.institution || item.company}</h4>
+                      <p className="text-gray-300">{item.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
+
+      {/* CSS for animations */}
+      <style jsx>{`
+        .timeline-item {
+          opacity: 0;
+          transition: opacity 0.5s ease;
+        }
+        
+        .timeline-item.animate-fade-in {
+          opacity: 1;
+        }
+        
+        @media (min-width: 768px) {
+          .timeline-item:nth-child(odd) {
+            left: 50%;
+            width: 50%;
+            padding-right: 2rem;
+            text-align: right;
+          }
+          
+          .timeline-item:nth-child(even) {
+            width: 50%;
+            padding-left: 2rem;
+          }
+        }
+      `}</style>
     </section>
   );
-}
+};
 
 export default EducationAndExperience;
