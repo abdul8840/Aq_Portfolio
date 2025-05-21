@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion';
-import { 
-  FaWordpress, 
-  FaShopify, 
-  FaPenNib, 
-  FaSearch, 
-  FaChartLine, 
-  FaGoogle, 
-  FaStore, 
-  FaFacebook, 
+import {
+  FaWordpress,
+  FaShopify,
+  FaPenNib,
+  FaSearch,
+  FaChartLine,
+  FaGoogle,
+  FaStore,
+  FaFacebook,
   FaClipboardCheck,
-  FaStar
+  FaStar,
+  FaBullhorn
 } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 
@@ -27,8 +28,16 @@ const skills = [
   { name: 'Google Search Console', icon: <FaGoogle className="!text-3xl !text-blue-400" /> },
 ];
 
+const proficiencies = [
+  { name: 'Search Engine Optimization', icon: <FaSearch className="!text-3xl !text-teal-500" /> },
+  { name: 'Content Writing', icon: <FaPenNib className="!text-3xl !text-purple-500" /> },
+  { name: 'Google Ads', icon: <FaBullhorn className="!text-3xl !text-red-500" /> },
+  { name: 'Google Analytics', icon: <FaGoogle className="!text-3xl !text-orange-500" /> },
+];
+
 const Skills = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [proficiencyHoveredIndex, setProficiencyHoveredIndex] = useState(null);
   const [floatingIcons, setFloatingIcons] = useState([]);
 
   useEffect(() => {
@@ -78,7 +87,7 @@ const Skills = () => {
       ))}
       
       <div className="container !mx-auto relative z-10">
-        <motion.h2 
+        <motion.h2
           className="text-4xl md:text-5xl font-bold text-white text-center !mb-16"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -98,14 +107,14 @@ const Skills = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.3)'
               }}
             >
               {/* Animated Background Gradient */}
               <div className="absolute inset-0 overflow-hidden rounded-2xl">
-                <div className={`absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 
+                <div className={`absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0
                                 group-hover:opacity-100 transition-opacity duration-500 ${hoveredIndex === index ? '!opacity-100' : ''}`}></div>
               </div>
 
@@ -119,13 +128,13 @@ const Skills = () => {
               </div>
 
               {/* Corner Accents */}
-              <div className="absolute top-3 left-3 w-2 h-2 bg-blue-400 rounded-full 
+              <div className="absolute top-3 left-3 w-2 h-2 bg-blue-400 rounded-full
                              group-hover:scale-150 transition-transform duration-500"></div>
-              <div className="absolute top-3 right-3 w-2 h-2 bg-purple-400 rounded-full 
+              <div className="absolute top-3 right-3 w-2 h-2 bg-purple-400 rounded-full
                              group-hover:scale-150 transition-transform duration-500"></div>
-              <div className="absolute bottom-3 left-3 w-2 h-2 bg-blue-400 rounded-full 
+              <div className="absolute bottom-3 left-3 w-2 h-2 bg-blue-400 rounded-full
                              group-hover:scale-150 transition-transform duration-500"></div>
-              <div className="absolute bottom-3 right-3 w-2 h-2 bg-purple-400 rounded-full 
+              <div className="absolute bottom-3 right-3 w-2 h-2 bg-purple-400 rounded-full
                              group-hover:scale-150 transition-transform duration-500"></div>
 
               {/* Skill Content */}
@@ -133,11 +142,79 @@ const Skills = () => {
                 <div className="bg-gray-700/50 rounded-full !p-5 group-hover:bg-gradient-to-br from-blue-500/20 to-purple-500/20 transition-all duration-500">
                   {skill.icon}
                 </div>
-                <motion.h3 
+                <motion.h3
                   className="text-xl font-semibold text-white"
                   whileHover={{ color: '#60a5fa' }}
                 >
                   {skill.name}
+                </motion.h3>
+                <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Proficiency Section */}
+        <motion.h2
+          className="text-4xl md:text-5xl font-bold text-white text-center !mt-20 !mb-16"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          My <span className="text-gradient bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Proficiencies</span>
+        </motion.h2>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {proficiencies.map((proficiency, index) => (
+            <motion.div
+              key={index}
+              className="relative bg-gray-800/50 backdrop-blur-md rounded-2xl !p-8 shadow-lg overflow-hidden border border-gray-700/50
+                         transition-all duration-500 hover:shadow-xl group"
+              onMouseEnter={() => setProficiencyHoveredIndex(index)}
+              onMouseLeave={() => setProficiencyHoveredIndex(null)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.3)'
+              }}
+            >
+              {/* Animated Background Gradient */}
+              <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                <div className={`absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0
+                                group-hover:opacity-100 transition-opacity duration-500 ${proficiencyHoveredIndex === index ? '!opacity-100' : ''}`}></div>
+              </div>
+
+              {/* Animated Border */}
+              <div className="absolute inset-0 rounded-2xl pointer-events-none overflow-hidden">
+                <div className={`absolute inset-0 border-2 border-transparent rounded-2xl
+                              transition-all duration-700 ease-in-out
+                              ${proficiencyHoveredIndex === index ? 'border-blue-500/50' : ''}`}>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+                </div>
+              </div>
+
+              {/* Corner Accents */}
+              <div className="absolute top-3 left-3 w-2 h-2 bg-blue-400 rounded-full
+                             group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="absolute top-3 right-3 w-2 h-2 bg-purple-400 rounded-full
+                             group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="absolute bottom-3 left-3 w-2 h-2 bg-blue-400 rounded-full
+                             group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="absolute bottom-3 right-3 w-2 h-2 bg-purple-400 rounded-full
+                             group-hover:scale-150 transition-transform duration-500"></div>
+
+              {/* Proficiency Content */}
+              <div className="relative flex flex-col items-center text-center !space-y-5 z-10">
+                <div className="bg-gray-700/50 rounded-full !p-5 group-hover:bg-gradient-to-br from-blue-500/20 to-purple-500/20 transition-all duration-500">
+                  {proficiency.icon}
+                </div>
+                <motion.h3
+                  className="text-xl font-semibold text-white"
+                  whileHover={{ color: '#60a5fa' }}
+                >
+                  {proficiency.name}
                 </motion.h3>
                 <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
