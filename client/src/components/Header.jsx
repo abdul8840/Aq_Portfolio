@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { useState } from 'react';
 
@@ -33,11 +33,11 @@ const Header = () => {
     { name: 'Contact', href: '#contact' },
   ];
 
-  const socialIcons = [
-    { icon: <FaGithub />, href: 'https://github.com/yourusername' },
-    { icon: <FaLinkedin />, href: 'https://linkedin.com/in/yourusername' },
-    { icon: <FaTwitter />, href: 'https://twitter.com/yourusername' },
-    { icon: <FaInstagram />, href: 'https://instagram.com/yourusername' },
+  const socialIcons = [ 
+    { icon: <FaLinkedin />, href: 'https://www.linkedin.com/in/mohdaqibseo?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
+    { icon: <FaFacebook />, href: 'https://www.facebook.com/profile.php?id=100009049126856' },
+    { icon: <FaInstagram />, href: 'https://www.instagram.com/aqib.khan_7?igsh=MTd2dTRmY3puYzVzNg==' },
+    { icon: <FaGithub />, href: '#' },
   ];
 
   return (

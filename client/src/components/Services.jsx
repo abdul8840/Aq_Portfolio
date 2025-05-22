@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaCode, FaSearch, FaChartLine, FaMobile, FaPaintBrush, FaServer } from 'react-icons/fa';
+import { FaCode, FaSearch, FaChartLine, FaMobile, FaPenFancy, FaServer } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 
 const Services = () => {
@@ -13,10 +13,10 @@ const Services = () => {
       title: 'Web Development',
       icon: <FaCode className="text-4xl" />,
       shortDesc: 'Custom websites built with modern technologies for optimal performance.',
-      fullDesc: 'We specialize in creating responsive, high-performance websites using React, Next.js, and modern CSS frameworks. Our development process focuses on clean code, accessibility, and SEO best practices to ensure your site reaches its full potential.',
+      fullDesc: 'We specialize in creating responsive, high-performance websites using Wordpress, Shopify and other Website Builder Platform. Our development process focuses on clean code, accessibility, and SEO best practices to ensure your site reaches its full potential.',
       features: [
         'Responsive Design',
-        'React/Next.js Development',
+        'Wordpress/Shopify Development',
         'Performance Optimization',
         'SEO Friendly'
       ]
@@ -62,15 +62,15 @@ const Services = () => {
     },
     {
       id: 5,
-      title: 'UI/UX Design',
-      icon: <FaPaintBrush className="text-4xl" />,
-      shortDesc: 'Beautiful, intuitive interfaces that delight users.',
-      fullDesc: 'Our design process focuses on creating user-centered interfaces that are both aesthetically pleasing and highly functional. We conduct user research and testing to ensure optimal usability.',
+      title: 'Content Writing',
+      icon: <FaPenFancy className="text-4xl" />,
+      shortDesc: 'Engaging, SEO-friendly content tailored to your audience.',
+      fullDesc: 'We craft high-quality content that informs, engages, and converts. Whether it’s for blogs, websites, or marketing campaigns, our writing is optimized for both users and search engines.',
       features: [
-        'User Research',
-        'Wireframing & Prototyping',
-        'Visual Design',
-        'Usability Testing'
+        'SEO Blog Writing',
+        'Website Copywriting',
+        'Product Descriptions',
+        'Social Media Content'
       ]
     },
     {
@@ -140,7 +140,7 @@ const Services = () => {
       </div>
 
       <div className="container !mx-auto relative z-10">
-        <motion.h2 
+        <motion.h2
           className="text-4xl md:text-5xl font-bold text-white text-center !mb-4"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -149,8 +149,8 @@ const Services = () => {
         >
           My <span className="text-gradient bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Services</span>
         </motion.h2>
-        
-        <motion.p 
+
+        <motion.p
           className="text-gray-300 text-center max-w-2xl !mx-auto !mb-16 text-lg"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -177,10 +177,10 @@ const Services = () => {
                     {service.icon}
                   </div>
                 </div>
-                
+
                 <h3 className="text-2xl font-bold text-white !mb-3 text-center">{service.title}</h3>
                 <p className="text-gray-300 !mb-6 text-center flex-grow">{service.shortDesc}</p>
-                
+
                 <motion.button
                   className="!mt-auto bg-gradient-to-r from-blue-600 to-blue-700 text-white !px-6 !py-3 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 self-center cursor-pointer"
                   whileHover={{ scale: 1.05 }}
@@ -198,7 +198,7 @@ const Services = () => {
       {/* Modal */}
       <AnimatePresence>
         {selectedService && (
-          <motion.div 
+          <motion.div
             className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center !p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -212,13 +212,13 @@ const Services = () => {
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: 'spring', damping: 25 }}
             >
-              <button 
+              <button
                 className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-10 cursor-pointer"
                 onClick={() => setSelectedService(null)}
               >
                 <IoClose className="text-3xl" />
               </button>
-              
+
               <div className="!p-8">
                 <div className="flex items-center !mb-6">
                   <div className="!p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white !mr-4">
@@ -226,16 +226,16 @@ const Services = () => {
                   </div>
                   <h3 className="text-3xl font-bold text-white">{selectedService.title}</h3>
                 </div>
-                
+
                 <div className="prose prose-invert max-w-none">
                   <p className="text-gray-300 !mb-6 text-lg">{selectedService.fullDesc}</p>
-                  
+
                   <h4 className="text-xl font-semibold text-white !mb-4">Key Features:</h4>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 !mb-8">
                     {selectedService.features.map((feature, i) => (
-                      <motion.li 
+                      <motion.li
                         key={i}
-                        className="flex items-center bg-gray-700/50 rounded-lg !px-4 !py-3"
+                        className="flex items-center bg-gray-700/50 text-gray-100 rounded-lg !px-4 !py-3"
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: i * 0.1 }}

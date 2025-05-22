@@ -3,6 +3,7 @@ import { FaDownload, FaPaperPlane } from 'react-icons/fa';
 import { FiGithub, FiLinkedin, FiTwitter, FiCode, FiDatabase, FiCpu, FiLayers } from 'react-icons/fi';
 import { FaStar } from 'react-icons/fa';
 import CV from '../assets/aqib_cv.pdf'
+import Image from '../assets/aqibkhan.webp'
 
 const Hero = () => {
   // Animate floating elements
@@ -157,7 +158,7 @@ const Hero = () => {
               {/* Profile image */}
               <div className="absolute inset-0 flex items-center justify-center overflow-hidden rounded-full bg-gray-100 border-8 border-white shadow-2xl transform hover:scale-105 transition-transform duration-500">
                 <img
-                  src="https://via.placeholder.com/400x400"
+                  src={Image}
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />

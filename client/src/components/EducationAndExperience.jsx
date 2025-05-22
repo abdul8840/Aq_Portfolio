@@ -14,22 +14,15 @@ const EducationAndExperience = () => {
       year: '2024',
       degree: 'Bachelor of Commerce',
       institution: 'Allahabad State University',
-      description: 'Specialized in Web Development and Artificial Intelligence. Graduated with honors.'
+      description: 'Built a solid foundation in business, finance, and economics, with strong skills in analysis, decision-making, and financial literacy.'
     },
     {
       id: 2,
       year: '2022',
       degree: 'Digital Marketing',
       institution: 'National Digital Marketing Institute & Training ( NDMIT )',
-      description: 'Focus on Mathematics and Computer Science. Achieved top 5% in final exams.'
+      description: 'Trained in SEO, social media, Google Ads, and content marketing. Gained practical skills in growing online presence and running effective digital campaigns.'
     },
-    // {
-    //   id: 3,
-    //   year: '2011 - 2013',
-    //   degree: 'Secondary Education',
-    //   institution: 'Metro High School',
-    //   description: 'Participated in multiple coding competitions and science fairs.'
-    // }
   ];
 
   const experienceData = [

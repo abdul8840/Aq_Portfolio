@@ -1,6 +1,7 @@
 import { motion, useAnimation } from 'framer-motion';
 import { FaStar, FaCertificate, FaGoogle, FaEnvelope, FaPenNib, FaChartLine, FaSearch } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
+import Image from '../assets/aqib.png'
 
 const certificates = [
   'NDMCC By NDMIT',
@@ -111,7 +112,7 @@ const AboutMe = () => {
             </motion.svg>
             {/* Image */}
             <img
-              src="https://via.placeholder.com/300"
+              src={Image}
               alt="Profile"
               className="absolute inset-0 w-full h-full object-cover rounded-full shadow-2xl border-4 border-white/20 z-10"
             />
@@ -158,7 +159,7 @@ const AboutMe = () => {
             animate={bioControls}
             initial={{ opacity: 0 }}
           >
-            Dynamic SEO Specialist with proven success at DigiMarquee, leveraging on-page SEO and content optimization to enhance website visibility. Expert in WordPress development and link building, I excel in creating impactful digital marketing strategies while collaborating effectively with teams to drive results. Committed to staying ahead of industry trends and best practices.
+            I'm dynamic SEO Specialist with proven success at DigiMarquee, leveraging on-page SEO and content optimization to enhance website visibility. Expert in WordPress development and link building, I excel in creating impactful digital marketing strategies while collaborating effectively with teams to drive results. Committed to staying ahead of industry trends and best practices.
           </motion.p>
           <div className="!space-y-6">
             <h3 className="text-3xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-pink-500">
