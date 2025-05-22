@@ -1,7 +1,7 @@
 import { motion, useAnimation } from 'framer-motion';
-import { FaStar, FaCertificate, FaGoogle, FaEnvelope, FaPenNib, FaChartLine, FaSearch } from 'react-icons/fa';
+import { FaCertificate } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
-import Image from '../assets/aqib.png'
+import Image from '../assets/aqib.png';
 
 const certificates = [
   'NDMCC By NDMIT',
@@ -35,7 +35,7 @@ const AboutMe = () => {
     });
   }, [headingControls]);
 
-  // Parallax effect for floating icons
+  // Parallax effect for glowing particles
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({
@@ -47,140 +47,173 @@ const AboutMe = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Array for floating icons in the background
-  const floatingIcons = Array.from({ length: 25 }).map((_, i) => ({
+  // Array for glowing particles in the background
+  const glowingParticles = Array.from({ length: 20 }).map((_, i) => ({
     id: i,
-    icon: [FaStar, FaCertificate, FaGoogle, FaEnvelope, FaPenNib, FaChartLine, FaSearch][Math.floor(Math.random() * 7)],
-    size: Math.random() * 20 + 15,
+    size: Math.random() * 10 + 5,
     left: Math.random() * 100,
     top: Math.random() * 100,
-    duration: Math.random() * 6 + 4,
+    duration: Math.random() * 8 + 4,
     delay: Math.random() * 3,
-    color: ['text-yellow-300', 'text-blue-300', 'text-green-300', 'text-purple-300', 'text-pink-300'][Math.floor(Math.random() * 5)],
+    color: ['bg-blue-400', 'bg-purple-400', 'bg-pink-400'][Math.floor(Math.random() * 3)],
   }));
 
   return (
-    <div id='about' className="min-h-screen bg-gray-900 animate-gradient-bg !py-12 !px-4 relative overflow-hidden">
-      {/* Floating Icons Background with Parallax */}
-      {floatingIcons.map(({ id, icon: Icon, size, left, top, duration, delay, color }) => (
+    <div id='about' className="min-h-screen bg-gray-900 !py-16 !px-4 relative overflow-hidden">
+      {/* Glowing Particles Background with Parallax */}
+      {glowingParticles.map(({ id, size, left, top, duration, delay, color }) => (
         <motion.div
           key={id}
-          className={`absolute ${color} opacity-20 animate-float`}
+          className={`absolute ${color} rounded-full opacity-20 blur-sm`}
           style={{
-            fontSize: `${size}px`,
+            width: `${size}px`,
+            height: `${size}px`,
             left: `calc(${left}% + ${mousePosition.x}px)`,
             top: `calc(${top}% + ${mousePosition.y}px)`,
-            animationDuration: `${duration}s`,
-            animationDelay: `${delay}s`,
           }}
-        >
-          <Icon />
-        </motion.div>
+          animate={{
+            y: [0, Math.random() * 50 - 25],
+            x: [0, Math.random() * 50 - 25],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration,
+            delay,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            ease: 'linear',
+          }}
+        />
       ))}
 
-      <div className="container !mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
-        {/* Left Side: Image with SVG Background, Name, and Profession */}
-        <motion.div
-          className="relative flex flex-col justify-center items-center"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          whileHover={{ rotateY: 10, rotateX: -10 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="relative w-72 h-72 md:w-96 md:h-96">
-            {/* Animated SVG Background */}
-            <motion.svg
-              className="absolute inset-0 w-full h-full z-0"
-              viewBox="0 0 200 200"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
-              transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
-            >
-              <path
-                fill="url(#gradient)"
-                d="M50,-80C65,-70,78,-55,85,-38C92,-21,93,-10,90,0C87,10,80,20,70,30C60,40,47,50,33,60C19,70,4,80,-11,85C-26,90,-41,90,-55,80C-69,70,-82,55,-88,38C-94,21,-93,5,-88,-10C-83,-25,-74,-40,-62,-53C-50,-66,-35,-76,-20,-83C-5,-90,10,-94,25,-92C40,-90,55,-83,50,-80Z"
-                transform="translate(100 100)"
+      <div className="container !mx-auto relative z-10">
+        {/* Main Content: Image and Bio */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 !mb-12">
+          {/* Profile Image */}
+          <motion.div
+            className="relative flex flex-col justify-center items-center"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            whileHover={{ rotateY: 10, rotateX: -10 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="relative w-72 h-72 md:w-96 md:h-96">
+              {/* Animated SVG Background */}
+              <motion.svg
+                className="absolute inset-0 w-full h-full z-0"
+                viewBox="0 0 200 200"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
+                transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
+              >
+                <path
+                  fill="url(#gradient)"
+                  d="M50,-80C65,-70,78,-55,85,-38C92,-21,93,-10,90,0C87,10,80,20,70,30C60,40,47,50,33,60C19,70,4,80,-11,85C-26,90,-41,90,-55,80C-69,70,-82,55,-88,38C-94,21,-93,5,-88,-10C-83,-25,-74,-40,-62,-53C-50,-66,-35,-76,-20,-83C-5,-90,10,-94,25,-92C40,-90,55,-83,50,-80Z"
+                  transform="translate(100 100)"
+                />
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style={{ stopColor: '#3b82f6', stopOpacity: 0.9 }} />
+                    <stop offset="50%" style={{ stopColor: '#a855f7', stopOpacity: 0.9 }} />
+                    <stop offset="100%" style={{ stopColor: '#ec4899', stopOpacity: 0.9 }} />
+                  </linearGradient>
+                </defs>
+              </motion.svg>
+              {/* Image */}
+              <img
+                src={Image}
+                alt="Profile"
+                className="absolute inset-0 w-full h-full object-cover rounded-full shadow-2xl border-4 border-white/20 z-10"
               />
-              <defs>
-                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: '#3b82f6', stopOpacity: 0.9 }} />
-                  <stop offset="50%" style={{ stopColor: '#a855f7', stopOpacity: 0.9 }} />
-                  <stop offset="100%" style={{ stopColor: '#ec4899', stopOpacity: 0.9 }} />
-                </linearGradient>
-              </defs>
-            </motion.svg>
-            {/* Image */}
-            <img
-              src={Image}
-              alt="Profile"
-              className="absolute inset-0 w-full h-full object-cover rounded-full shadow-2xl border-4 border-white/20 z-10"
-            />
-          </div>
-          {/* Name and Profession */}
-          <motion.div
-            className="!mt-6 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-              Aqib Khan
-            </h3>
-            <p className="text-lg font-medium bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-pink-500">
-              SEO Specialist & Digital Marketer
-            </p>
-          </motion.div>
-        </motion.div>
+            </div>
 
-        {/* Right Side: Bio and Certificates */}
-        <motion.div
-          className="flex flex-col justify-center text-white !space-y-8"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.div
-            className="relative"
-            animate={headingControls}
-          >
-            <h2 className="text-5xl !mb-2 font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 drop-shadow-lg">
-              About Me
-            </h2>
             <motion.div
-              className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: '40%' }}
-              transition={{ duration: 1.5, ease: 'easeOut', delay: 0.5 }}
-            />
+              className="!mt-6 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h3 className="text-3xl md:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+                Aqib Khan
+              </h3>
+              <p className="text-lg md:text-xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-pink-500">
+                Digital Marketing | SEO Specialist
+              </p>
+            </motion.div>
           </motion.div>
-          <motion.p
-            className="text-lg leading-relaxed max-w-xl font-light"
-            animate={bioControls}
-            initial={{ opacity: 0 }}
+
+          {/* Bio, Name, and Profession */}
+          <motion.div
+            className="flex flex-col justify-center text-white !space-y-6"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            I'm dynamic SEO Specialist with proven success at DigiMarquee, leveraging on-page SEO and content optimization to enhance website visibility. Expert in WordPress development and link building, I excel in creating impactful digital marketing strategies while collaborating effectively with teams to drive results. Committed to staying ahead of industry trends and best practices.
-          </motion.p>
-          <div className="!space-y-6">
-            <h3 className="text-3xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-pink-500">
-              Certificates
-            </h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {certificates.map((cert, index) => (
-                <motion.li
-                  key={index}
-                  className="relative bg-white/10 backdrop-blur-lg rounded-lg !p-4 flex items-center !space-x-3 hover:bg-white/20 transition-all duration-300 group border-2 border-transparent hover:border-gradient animate-gradient-border"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(59, 130, 246, 0.5)' }}
-                >
-                  <FaCertificate className="text-yellow-300 text-xl group-hover:animate-spin" />
-                  <span className="text-white">{cert}</span>
-                </motion.li>
-              ))}
-            </ul>
-          </div>
+
+            {/* Bio Heading */}
+            <motion.div
+              className="relative !mb-4"
+              animate={headingControls}
+            >
+              <h2 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+                About Me
+              </h2>
+              <motion.div
+                className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: '30%' }}
+                transition={{ duration: 1.5, ease: 'easeOut', delay: 0.5 }}
+              />
+            </motion.div>
+
+            {/* Bio Content */}
+            <motion.div
+              className="text-lg leading-relaxed text-gray-300"
+              animate={bioControls}
+              initial={{ opacity: 0 }}
+            >
+              <p className="!mb-4">
+                I am a <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 font-semibold">passionate and results-driven Digital Marketing Expert</span> with over 3 years of experience in the industry. Specializing in <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-pink-500 font-semibold">SEO</span>, I have successfully worked on numerous projects, helping businesses improve their online visibility, drive traffic, and achieve higher rankings on search engines.
+              </p>
+              <p className="!mb-4">
+                My expertise goes beyond SEO—I have hands-on experience in <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 font-semibold">on-page optimization</span>, website designing, and content management systems like WordPress and Shopify. I have designed and optimized multiple websites that are not only visually appealing but also SEO-friendly and user-centric.
+              </p>
+              <p className="!mb-4">
+                In addition, I manage <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-pink-500 font-semibold">social media accounts</span> for clients across various industries, creating engaging content and strategies that build brand awareness and foster online communities.
+              </p>
+              <p>
+                Whether you're a small business or a growing brand, I bring a <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 font-semibold">strategic and creative approach</span> to every project, ensuring impactful results and long-term success in the digital landscape.
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Certificates Section */}
+        <motion.div
+          className="!space-y-6"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <h3 className="text-3xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-pink-500 text-center">
+            Certificates
+          </h3>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {certificates.map((cert, index) => (
+              <motion.li
+                key={index}
+                className="relative bg-gray-800/50 backdrop-blur-md rounded-lg !p-4 flex items-center !space-x-3 border border-gray-700/50 hover:bg-gray-700/70 transition-all duration-300 group"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(59, 130, 246, 0.3)' }}
+              >
+                <FaCertificate className="text-green-500 text-xl group-hover:animate-pulse" />
+                <span className="text-white">{cert}</span>
+              </motion.li>
+            ))}
+          </ul>
         </motion.div>
       </div>
     </div>
