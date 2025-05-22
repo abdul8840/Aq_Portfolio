@@ -27,7 +27,7 @@ const tools = [
     description: 'Keyword research and SEO insights for content optimization.' 
   },
   { 
-    name: 'Sem Rush', 
+    name: 'SEM rush', 
     icon: <FaChartBar className="!text-4xl !text-purple-400" />, 
     description: 'Comprehensive SEO and competitor analysis tool.' 
   },
