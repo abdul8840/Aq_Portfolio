@@ -128,7 +128,7 @@ const Hero = () => {
               <span className="text-gradient">DIGITAL  MARKETER</span>
             </h2>
             <p className="text-gray-300 !mb-8 max-w-lg !mx-auto md:!mx-0">
-              Performed keyword research and analyzed SEO performance of webpages.
+              Driving Digital Growth with Strategy, SEO, and Style.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <a
