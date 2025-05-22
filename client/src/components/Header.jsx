@@ -37,7 +37,7 @@ const Header = () => {
     { icon: <FaLinkedin />, href: 'https://www.linkedin.com/in/mohdaqibseo?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
     { icon: <FaFacebook />, href: 'https://www.facebook.com/profile.php?id=100009049126856' },
     { icon: <FaInstagram />, href: 'https://www.instagram.com/aqib.khan_7?igsh=MTd2dTRmY3puYzVzNg==' },
-    { icon: <FaGithub />, href: '#' },
+    { icon: <FaGithub />, href: 'https://github.com/mohdaqibkhan7' },
   ];
 
   return (

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 const socialLinks = [
   { name: 'Facebook', icon: <FaFacebook className="!text-2xl !text-cyan-400" />, url: 'https://www.facebook.com/profile.php?id=100009049126856' },
   { name: 'LinkedIn', icon: <FaLinkedin className="!text-2xl !text-blue-400" />, url: 'https://www.linkedin.com/in/mohdaqibseo?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
-  { name: 'GitHub', icon: <FaGithub className="!text-2xl !text-gray-200" />, url: '#' },
+  { name: 'GitHub', icon: <FaGithub className="!text-2xl !text-gray-200" />, url: 'https://github.com/mohdaqibkhan7' },
   { name: 'Instagram', icon: <FaInstagram className="!text-2xl !text-pink-400" />, url: 'https://www.instagram.com/aqib.khan_7?igsh=MTd2dTRmY3puYzVzNg==' },
 ];
 
